@@ -15,4 +15,11 @@
 ![image](https://user-images.githubusercontent.com/35020560/91636110-b03c9b80-ea1b-11ea-8013-64d1899d855f.png)
 
 
+* `Chart/Graph` render on modelbox : [Click Here](https://github.com/aherdipak/HTML-JAVASCRIPT/blob/master/ChartInModelBox.html)
+
+![image](https://user-images.githubusercontent.com/35020560/91636355-7c627580-ea1d-11ea-84a2-c4810d6a75b1.png)
+
+
+
+
 
