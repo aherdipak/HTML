@@ -1,0 +1,351 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Tippy -->
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
+
+
+<!-- Chart -->
+
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
+</head>
+
+<body>
+
+    <script>
+        $(function () {
+            tippy('.btn', {
+                content: `
+                <h4>Time period</h4>
+                <table>
+                    <colgroup>
+                        <col width="40%" />
+                        <col width="10%" />
+                        <col width="50%" />
+                      </colgroup>
+                    <tr>
+                        <td>Start Time</td>
+                        <td> : </td>
+                        <td>12:12:789 pm</td>
+                    </tr>
+                    <tr>
+                        <td>End Time</td>
+                        <td> : </td>
+                        <td>12:12:789 pm</td>
+                    </tr>
+                </table>`,
+                allowHTML: true,
+
+            });
+
+           // render chart
+            test();
+        });
+    </script>
+    <div class="container">
+
+        <div class="row" style="margin-top: 9%;">
+            <div class="col-sm-12">
+                Tippy
+            </div>
+            <div class="col-sm-12">
+                
+            </div>
+            <div class="col-sm-12">
+               <!--Tippy Tooltip-->
+                <div class="col-sm-6">
+                    <button class="btn" onclick="test()">Text</button>
+                </div>
+
+            <!--Chart-->
+                <div class="col-sm-6">
+                    <div class="float-left" style="width:40%">
+                        <canvas id="myChart" width="200x" height="200px"></canvas>
+                    </div>
+                    <div class="float-left" style="width:60%">
+                        <div id="js-legend" class="chart-legend"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<style>
+    .chart-legend li span {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+    }
+
+    .chart-legend {
+        height: 250px;
+       /* margin-top: 25%;*/
+        overflow: auto;
+    }
+
+    .chart-legend li {
+        cursor: pointer;
+        list-style: none;
+    }
+
+    .strike {
+        text-decoration: line-through !important;
+    }
+
+    .float-left {
+        float: left;
+    }
+
+    
+</style>
+
+
+<script>
+    var myChart = $("#myChart");
+    /* JSON for start and end time */
+    var map = new Map();
+    map.set('100000', {
+        "start": "12:10:201 PM",
+        "end": "12:10:201 PM"
+    });
+    map.set('200000', {
+        "start": "12:10:201 PM",
+        "end": "12:10:201 PM"
+    });
+    map.set('250000', {
+        "start": "12:10:201 PM",
+        "end": "12:10:201 PM"
+    });
+    map.set('300000', {
+        "start": "12:10:201 PM",
+        "end": "12:10:201 PM"
+    });
+    map.set('500000', {
+        "start": "12:10:201 PM",
+        "end": "12:10:201 PM"
+    });
+
+    map.set('1100000', {
+        "start": "12:10:201 PM",
+        "end": "12:10:201 PM"
+    });
+    map.set('2200000', {
+        "start": "12:10:201 PM",
+        "end": "12:10:201 PM"
+    });
+    map.set('2550000', {
+        "start": "12:10:201 PM",
+        "end": "12:10:201 PM"
+    });
+    map.set('3300000', {
+        "start": "12:10:201 PM",
+        "end": "12:10:201 PM"
+    });
+    map.set('5500000', {
+        "start": "12:10:201 PM",
+        "end": "12:10:201 PM"
+    });
+    /* Data Chart */
+    var arrData = [
+        '100000',
+        '200000',
+        '250000',
+        '300000',
+        '500000',
+        '1100000',
+        '2200000',
+        '2550000',
+        '3300000',
+        '5500000'
+    ];
+
+
+    /* Label Chart*/
+    var arrLabel = [
+        'SAMPLE A',
+        'SAMPLE B',
+        'SAMPLE C',
+        'SAMPLE D',
+        'SAMPLE E',
+        'SAMPLE AA',
+        'SAMPLE BB',
+        'SAMPLE CC',
+        'READING AUDIT FROM NONSTOP',
+        'HAND SHAKING WITH NONSTOP'
+    ];
+
+
+
+    var config = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: arrData,
+                backgroundColor: [
+                    'rgba(29, 216, 0, 0.5)',
+                    'rgba(229, 24, 24, 0.5)',
+                    'rgba(229, 222, 24, 0.5)',
+                    'rgba(24, 31, 229, 0.5)',
+                    'rgba(24, 229, 229, 0.5)',
+                    'rgba(299, 216, 0, 0.5)',
+                    'rgba(227, 24, 24, 0.5)',
+                    'rgba(228, 222, 24, 0.5)',
+                    'rgba(244, 31, 229, 0.5)',
+                    'rgba(245, 229, 229, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(29, 216, 0, 1)',
+                    'rgba(229, 24, 24, 1)',
+                    'rgba(229, 222, 24, 1)',
+                    'rgba(24, 31, 229, 1)',
+                    'rgba(24, 229, 229, 1)',
+                    'rgba(29, 216, 0, 1)',
+                    'rgba(229, 24, 24, 1)',
+                    'rgba(229, 222, 24, 1)',
+                    'rgba(24, 31, 229, 1)',
+                    'rgba(24, 229, 229, 1)'
+                ],
+                borderWidth: 1,
+            }],
+            labels: arrLabel
+        },
+        options: {
+
+            /* Plugins Chart Labels Configuration */
+            plugins: {
+                labels: {
+                    render: function (args) {
+                        return '.';
+                    },
+                    fontColor: 'rgba(24, 229, 229, 0)',
+                }
+            },
+
+            /* Legend Callback for HTML Legend Custom*/
+            legendCallback: function (chart) {
+                var text = [];
+                console.log(chart.data);
+                text.push('<ul>');
+                for (var i = 0; i < chart.data.datasets[0].data.length; i++) {
+                    // console.log(chart.data.datasets[i]); // see what's inside the obj.
+                    text.push('<li>');
+                    text.push('<span style="background-color:' + chart.data.datasets[0].borderColor[i] +
+                        '"></span>');
+                    text.push(chart.data.labels[i]);
+                    text.push(' (<b style="font-size: 9px">' + 'Rp. ' + numeral(Number(chart.data
+                        .datasets[0].data[i])).format('0,0') + '</b>)');
+                    text.push('</li>');
+                }
+                text.push('</ul>');
+                return text.join("");
+            },
+
+            responsive: true,
+            fontColor: '#000',
+            legend: {
+                display: false,
+            },
+
+            /* Tootips configuration */
+           tooltips: {
+                mode: 'index',
+                enabled: true,
+                callbacks: {
+                    title: function (tooltipItem, data) {
+                        var indice = tooltipItem[0].index;
+                        return arrLabel[indice];
+                    },
+                    label: function (tooltipItem, data) {
+                        var indice = tooltipItem.index;
+                        //return "Total : " + numeral(Number(arrData[indice])).format('0,0');
+                        return false;
+                    },
+                    //afterLabel : function(tooltipItem, data) { return 'Start Time: 100 planos.'; },
+                    beforeFooter: function (tooltipItem, data) {
+                        var indice = tooltipItem[0].index;
+                        var data = map.get(arrData[indice]);
+                        var str = data.start != undefined ? data.start : '00';
+                        return 'Start Time: ' + str + ' ms';
+                    },
+                    footer: function (tooltipItem, data) {
+                        var indice = tooltipItem[0].index;
+                        var data = map.get(arrData[indice]);
+                        var str = data.end != undefined ? data.end : '00';
+                        return 'End Time: ' + str + ' ms';
+                    },
+                    afterFooter: function (tooltipItem, data) {
+                        return 'Total: 100 ms.';
+                    }
+                },
+                //backgroundColor: '#FFF',
+                titleFontSize: 16,
+                //titleFontColor: '#0066ff',
+                //bodyFontColor: '#000',
+                bodyFontSize: 14,
+                zIndex: 9999,
+                displayColors: false // color rectangle block
+            },
+
+//***************
+          /*  tooltip: {
+                mode: 'index',
+                enabled: true,
+		backgroundColor: '#f00',
+		borderColor: '#9ab',
+		useHTML: true,
+		formatter: function() {
+			return 	''+'<p style="color:#9ab;font-family:Lucida Grande,sans-serif;font-size:11px;text-align:center;margin:0;padding:2px 7px;">' + 
+					'<strong style="color:#fff;font-weight:normal;font-size:16px;">Depak</strong></p>';
+		},
+		style: {
+			zIndex: 100
+		}
+	},*/
+    //***************
+
+        }
+    };
+
+
+
+
+    //window.pieChart = new Chart(myChart, config);
+    var pieChart;
+    function test(){
+    pieChart = new Chart(myChart, config);
+    $('#js-legend').html(pieChart.generateLegend());
+
+   
+    }
+
+$(function(){
+    $("#js-legend > ul > li").on("click", function (e) {
+        //console.log(this,e.view.pieChart,);
+        var index = $(this).index();
+
+        $(this).toggleClass("strike")
+        var ci = e.view.pieChart;
+        var curr = ci.data.datasets[0]._meta[0].data[index];
+
+        curr.hidden = !curr.hidden
+        ci.update();
+    })
+});
+    
+   
+</script>
+
+</html>
