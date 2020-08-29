@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+ 
+</head>
+<body>
+
+
+<style>
+			#showChart{
+			background-color: #5bb85b;
+			color: #ffffff;
+			padding: 10px;
+			border: 0px;
+			border-radius: 8px;
+			font-size: 18px;
+			outline: none;
+			cursor: pointer;
+			} 
+			
+			.legend {
+			width: 100%;
+			position: absolute;
+			top: 55px;
+			
+			left: 31%;
+			/*top: 100px;*/
+			right: 20px;*/
+			color: @light;
+			/*font-family: @family;
+			font-variant: small-caps;
+			font-size: @size + 2;*/
+			}
+			.legend ul li{list-style:none;}
+			.legend ul li span{ width:15px; height:15px;display:inline-block; margin-right:5px; margin-bottom: -3px; }
+			#caption{
+				margin-left: 47px;
+			}
+		</style>
+
+
+
+<div class="container">
+  <h2>Modal Example</h2>
+  <!-- Trigger the modal with a button -->
+  <button type="button"  id = 'btn'  class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+		
+        
+			 <div>
+				<canvas id="today" width="200" height="200"></canvas>
+				<p id="caption">Total:4.3 ms</p>
+				</div>
+			<div id="legend" class="legend"></div>
+		 
+		 
+		 
+        </div>
+        <!--<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>-->
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+
+
+<script>
+	
+			
+var data = [2137680, 6282693, 805566, 2568163, 598599];
+var labels = ["Management", "Finance", "Human Resources", "Business Development and Marketing", "Information Technology",];
+var bgColor = ["#878BB6", "#FFEA88", "#FF8153", "#4ACAB4", "#c0504d"];
+
+		
+		var data = {
+			labels: labels,/*[
+            "Fuel Consumption (Miles)",
+            "Distance Travelled (Miles)",
+            "Distance Remaining (Miles)",
+            "Fuel Cost (Pounds)",
+            "Time Driving (Minutes)"
+			],*/
+			datasets: [
+            {
+                data: data,//[300, 50, 100, 25, 120],
+                backgroundColor: bgColor,/*[
+				"#FF6384",
+				"#36A2EB",
+				"#FFCE56",
+				"#F86301",
+				"#FFFFF3"
+                ],*/
+                hoverBackgroundColor: [
+				"#FF6384",
+				"#36A2EB",
+				"#FFCE56",
+				"#F86301",
+				"#FFFFF3"
+                ]
+			}]
+		};
+		
+		
+		var options ={
+			segmentShowStroke: false,
+			animateRotate: true,
+			animateScale: false,
+			percentageInnerCutout: 50,
+			//tooltipTemplate: "<%= value %>%",
+		   //legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li>4ms <span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
+    
+			responsive: false,
+			legend: {
+			display:false
+   		  },
+		   title: {
+			  display: true,
+			  text: 'TEST'
+		    },
+		   tooltips: {
+			  callbacks: {
+				/*label: function(tooltipItem, data) {
+					var lable = data['labels'][tooltipItem[0]['index']];
+					let value = data['datasets'][0]['data'][tooltipItem['index']];
+					var lableArray = wordWrap(lable, 50);
+					lableArray[lableArray.length - 1] = lableArray[lableArray.length - 1] + ':' + value;
+					return lableArray;
+				}*/
+				
+				title: function(tooltipItem, data) {
+				  return data['labels'][tooltipItem[0]['index']];
+				},
+				label: function(tooltipItem, data) {
+				  return '<h5>'+data['datasets'][0]['data'][tooltipItem['index']]+'</h5><br/><h5>'+data['datasets'][0]['data'][tooltipItem['index']]+'</h5>';
+				},
+				
+				afterLabel: function(tooltipItem, data) {
+				  var dataset = data['datasets'][0];
+				  var percent = Math.round((dataset['data'][tooltipItem['index']] / dataset["_meta"][0]['total']) * 100)
+				  return '(' + percent + '%)';
+				}
+			  },/*,
+			  backgroundColor: '#FFF',
+			  titleFontSize: 16,
+			  titleFontColor: '#0066ff',
+			  bodyFontColor: '#000',
+			  bodyFontSize: 14,*/
+			  displayColors: false
+			}
+	};
+
+	function renderChart() {
+		var today = document.getElementById("today").getContext("2d");
+		var myDoughnutChart = new Chart(today, {
+			type: 'pie',
+			data: data,
+			options: options
+		});
+		var legends = myDoughnutChart.generateLegend();
+		console.log(legends)
+		document.getElementById('legend').innerHTML = legends;
+		
+	}
+		
+	    function renderChart1() {     
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                "GFA","GBA","NSA","FSR","Open Space Ratio","Sunlight Ratio","Ventilation Ratio","Stories"
+                ],
+                datasets: [{
+                    label: this.labels,
+                    data: [ 2.6, 30.6, 5.6, 6.4, 8.7, 2.1, 3.5, 9],
+                    borderColor: 'rgba(75, 192, 192, 0.2)',
+                    backgroundColor: 'rgba(75, 192, 192, 1)',
+                }]
+            },
+        });
+    }
+	
+	
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("btn");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function () {
+        modal.style.display = 'block'
+        renderChart();
+    }
+
+    span.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+</script>
+
+
+</body>
+</html>
