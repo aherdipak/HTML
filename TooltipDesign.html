@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Bootstrap Example</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		
+		<div class="container">
+			<style>
+				.arrow_box {
+				position: relative;
+				background: #ffffff;
+				width: 210px;
+				-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+				box-shadow: 0 5px 10px rgba(0,0,0,.2);
+				}
+				.arrow_box:after, .arrow_box:before {
+				top: 100%;
+				left: 50%;
+				border: solid transparent;
+				content: " ";
+				height: 0;
+				width: 0;
+				position: absolute;
+				pointer-events: none;
+				}
+				
+				.arrow_box:after {
+				border-color: rgba(255, 255, 255, 0);
+				border-top-color: #ffffff;
+				border-width: 10px;
+				margin-left: -10px;
+				}
+				.arrow_box:before {
+				border-color: rgba(194, 225, 245, 0);
+				border-top-color: #dcdcdc;
+				border-width: 12px;
+				margin-left: -12px;
+				}
+				.text-bold{
+				font-weight: bold;
+				}
+				
+			</style>
+            <div class="panel panel-default text-center arrow_box">
+				<div class="panel-heading">Title</div>
+				<div class="panel-body">
+					<p>Source:</p><span class="alert alert-info" style="padding: 4px;">S2*HIS*EBIA</span>
+					<p>Destination:</p><span class="alert alert-danger" style="padding: 4px;">S2*HIS*EBIA</span>
+				</div>
+			</div>
+			
+	<style>
+			
+
+	ul.source-dest li {
+	  display:inline;
+	}
+	
+	.popover.top {
+		margin-top: -29% !important;
+	}
+	
+	.alert {
+    padding: 3px;}
+	.panel-default {
+    padding-top: 0%;}
+    .panel {
+    margin-bottom: 8px;}
+	</style>
+	
+<div class="panel panel-default text-center arrow_box">
+	<div class="panel-heading">Title</div>
+	<div class="panel-body">
+		<ul class="source-dest">
+			<li><span style="margin: 0px 0px 5px 0px;">Source:</span></li>
+			<li><span class="alert alert-info total-time mr-2 time-2" style="margin: 0px 0px 5px 0px;">P2*N50*ENBP*</span></li>
+			<li><span style="margin: 0px 0px 5px 0px;">Destination:</span></li>
+			<li><span class="alert alert-info total-time mr-2 time-2" style="margin: 0px 0px 5px 0px;">P2*N50*ENBP*</span></li>
+		</ul>
+	</div>
+</div>
+			
+		</div>
+		
+	</body>
+</html>
