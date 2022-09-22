@@ -1,1 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <style>
+
+
+.issue-body-content .item-details dl>dd .editable-field {
+    margin: -2px 0 -2px -5px;
+}
+.editable-field.active {
+    background-color: #fff;
+    display: block !important;
+    box-shadow: 0 0 0 0 transparent;
+}
+
+.view-issue-field {
+    display: inline-block;
+    padding-right: 30px;
+}
+
+
+.editable-field form.aui {
+    margin: -2px -30px -2px -5px;
+}
+form.aui:first-child {
+    margin-top: 0;
+}
+p:first-child, ul:first-child, ol:first-child, dl:first-child, h1:first-child, 
+h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child, 
+blockquote:first-child, pre:first-child, form.aui:first-child, table.aui:first-child,
+.aui-tabs:first-child, .aui-panel:first-child, .aui-group:first-child {
+    margin-top: 0;
+}
+form.aui {
+    margin: 20px 0 0 0;
+    position: relative;
+}
+
+
+
+
+.editable-field form.aui .group, .editable-field form.aui .field-group {
+    clear: none;
+    margin: 0;
+    padding: 0;
+}
+form.aui .field-group, form.aui .group, form.aui .date-select {
+    box-sizing: border-box;
+    clear: both;
+    padding: 4px 0 4px 145px;
+    position: relative;
+    margin: 1px 0;
+    width: 100%;
+}
+
+form.aui .aui-ss, .jiraform .aui-ss {
+    width: 100%;
+    max-width: 250px;
+}
+form.aui .long-field {
+    max-width: 500px;
+}
+.aui-ss {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    overflow: visible;
+    position: relative;
+}
+.editable-field form.aui .aui-ss.aui-ss-has-entity-icon>.aui-ss-field {
+    padding-left: 23px;
+}
+.chrome form.aui .aui-ss>.aui-ss-field, .chrome .jiraform .aui-ss>.aui-ss-field {
+    vertical-align: middle;
+}
+form.aui .aui-ss.long-field, .jiraform .aui-ss.long-field, 
+form.aui .aui-ss.long-field>input, .jiraform .aui-ss.long-field>input {
+    max-width: 500px;
+}
+.editable-field form.aui .text, .editable-field form.aui .password, .editable-field form.aui .textarea,
+ .editable-field form.aui .select, .editable-field form.aui .multi-select {
+    box-shadow: 0 1px 3px #e8e8e8 inset;
+}
+.editable-field form.aui .text, .editable-field form.aui .password, .editable-field form.aui .select {
+    height: 1.71429em;
+    line-height: 1;
+    padding: 4px 3px;
+}
+form.aui .aui-ss>.aui-ss-field, .jiraform .aui-ss>.aui-ss-field {
+    padding-right: 28px;
+    vertical-align: baseline;
+    width: 100%;
+}
+.aui-ss.aui-ss-has-entity-icon>.aui-ss-field {
+    padding-left: 25px;
+}
+form.aui .text, form.aui .password, form.aui .select, form.aui .aui-select2-container .select2-choices {
+    height: 2.14285714em;
+    line-height: 1.4285714285714;
+    padding: 4px 5px;
+}
+form.aui .text, form.aui .password, form.aui .textarea, form.aui .select, 
+form.aui .multi-select, form.aui .aui-select2-container .select2-choices {
+    border: 1px solid #c1c7d0;
+    border-radius: 3.01px;
+    box-sizing: border-box;
+    font-size: inherit;
+    margin: 0;
+    max-width: 250px;
+    vertical-align: baseline;
+    width: 100%;
+}
+form.aui .text, form.aui .password, form.aui .upfile, form.aui .textarea, 
+form.aui .select, form.aui .multi-select, form.aui .aui-select2-container {
+    background: #fff;
+    color: #172b4d;
+    font-family: inherit;
+    font-size: 14px;
+}
+.aui-ss>.aui-ss-field {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    resize: none;
+}
+.editable-field form.aui .field-group .drop-menu, .editable-field form.aui .field-group .jira-multi-select textarea, 
+.editable-field form.aui .field-group .aui-ss-field {
+    border-bottom-right-radius: 0;
+}
+.aui-ss>.aui-ss-icon.drop-menu {
+    background: #f2f2f2;
+    background: -webkit-linear-gradient(top, #fff 0, #f2f2f2 100%);
+    background: -moz-linear-gradient(top, #fff 0, #f2f2f2 100%);
+    background: -ms-linear-gradient(top, #fff 0, #f2f2f2 100%);
+    background: -o-linear-gradient(top, #fff 0, #f2f2f2 100%);
+    background: linear-gradient(to bottom, #fff 0, #f2f2f2 100%);
+    border-color: #ccc;
+    border-radius: 3.01px;
+    border-style: solid;
+    border-width: 1px;
+    color: #333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-family: inherit;
+    font-variant: normal;
+    line-height: 20px;
+    margin: 0 10px 0 0;
+    padding: 4px 10px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 white;
+    vertical-align: baseline;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-border-radius-bottomleft: 0;
+    border-bottom-left-radius: 0;
+    -moz-border-radius-topleft: 0;
+    border-top-left-radius: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
+    bottom: 1px;
+    display: block;
+    height: auto;
+    margin: 0;
+    padding: 4px 0;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    width: 23px;
+}
+.aui-ss>.aui-ss-icon {
+    display: none;
+}
+.drop-menu {
+    background: none;
+    display: inline-block;
+    height: 16px;
+    margin: 0 0 0 5px;
+    overflow: visible;
+    padding: 0;
+    vertical-align: text-bottom;
+    width: 8px;
+}
+.icon {
+    background: transparent url(/s/-9b371t/710003/fd4ef4c…/1.0/_/download/resources/jira.webresources:icons/../../../images/icons/sprites/icons_module.png) no-repeat 0 0;
+    display: inline-block;
+    height: 16px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-align: left;
+    text-indent: -999em;
+    vertical-align: text-top;
+    width: 16px;
+}
+
+.editable-field form.aui .aui-ss>.aui-ss-entity-icon {
+    left: 5px;
+}
+.aui-ss.aui-ss-has-entity-icon>.aui-ss-entity-icon {
+    display: block;
+}
+.aui-ss>.aui-ss-entity-icon {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    -moz-background-size: 16px;
+    background-size: 16px;
+    display: none;
+    height: 16px;
+    left: 6px;
+    margin-top: -8px;
+    position: absolute;
+    top: 50%;
+    width: 16px;
+}
+img, fieldset {
+    border: 0;
+}
+
+
+
+.editable-field form.aui .field-group .aui-ss, .editable-field form.aui .field-group .jira-multi-select,
+.editable-field form.aui .field-group .group, .editable-field form.aui .field-group input[type=text], 
+.editable-field form.aui .field-group select, .editable-field form.aui .field-group textarea, .editable-field form.aui .field-group .text {
+    text-align: left;
+    vertical-align: top;
+    max-width: none;
+    width: 100%;
+}
+.save-options:not(.show-button-bar) {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 1;
+    box-shadow: 0 3px 6px rgb(111 111 111 / 20%);
+}
+.editable-field .save-options {
+    background-color: #fff;
+    border: 1px solid #ebecf0;
+    border-top: none;
+    border-radius: 0 0 3px 3px;
+    outline: none;
+    padding: 3px;
+}
+
+button {
+    appearance: auto;
+    writing-mode: horizontal-tb !important;
+    font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: ;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: buttonface;
+    margin: 0em;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+}
+.editable-field .save-options .aui-button .aui-iconfont-success {
+    color: #707070;
+}
+.aui-button .aui-icon {
+    color: #344563;
+}
+.aui-icon-small {
+    height: 16px;
+    width: 16px;
+}
+.aui-icon-small, .aui-icon-large {
+    line-height: 0;
+    position: relative;
+    vertical-align: text-top;
+}
+
+
+.editable-field .save-options:not(.show-button-bar) .aui-button+.aui-button {
+    margin-left: 3px;
+}
+form.aui .cancel {
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-block;
+    padding: 5px 10px;
+    vertical-align: baseline;
+}
+.aui-button~.aui-button {
+    margin-left: 10px;
+}
+.aui-button, a.aui-button, .aui-button:visited {
+    box-sizing: border-box;
+    transition: background-color .1s ease-out;
+    border-radius: 3.01px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-variant: normal;
+    font-weight: 400;
+    background-image: none;
+    background-color: rgba(9,30,66,0.08);
+    border-color: transparent;
+    color: #344563;
+    text-decoration: none;
+    display: inline-block;
+    height: 2.14285714em;
+    line-height: 1.36363636em;
+    margin: 0;
+    padding: 4px 10px;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+
+/*  */
+
+.editable-field {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: box-shadow 150ms ease-in 0ms;
+    transition: box-shadow 150ms ease-in 0ms;
+    border-radius: 2.01px;
+    cursor: text;
+    display: inline-block;
+    max-width: 100%;
+    box-shadow: 0 0 0 0 transparent;
+    padding: 2px 30px 2px 5px;
+    position: relative;
+    vertical-align: top;
+    word-break: break-word;
+}
+.people-details>dl:first-child {
+    line-height: 24px;
+}
+.item-details dl {
+    border-spacing: 0;
+    display: table;
+    table-layout: fixed;
+    margin: 0;
+    width: 100%;
+}
+.item-details {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.aui-group {
+    display: table;
+    box-sizing: border-box;
+    border-spacing: 0;
+    table-layout: fixed;
+    width: 100%;
+}
+.aui-page-panel-inner {
+    border-spacing: 0;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.editable-field:hover {
+    background-color: #fff;
+}
+
+.editable-field:hover, .editable-field.saving {
+    box-shadow: 0 0 0 1px #ebecf0;
+}
+
+
+
+.aui-icon {
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    border: none;
+    display: inline-block;
+    height: 9px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    /* text-indent: -999em; */
+    vertical-align: text-bottom;
+    width: 16px;
+}
+
+.editable-field:hover .overlay-icon, .editable-field.saving .overlay-icon {
+    opacity: 1;
+    z-index: auto;
+}
+
+.editable-field .overlay-icon {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    opacity: 0;
+    background-color: rgba(9,30,66,0.13);
+    background-repeat: no-repeat;
+    background-position: 4px 4px;
+    border-left: 1px solid #ebecf0;
+    bottom: 0;
+    height: auto;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 24px;
+    z-index: -1;
+}
+
+.editable-field .overlay-icon.aui-iconfont-edit {
+    cursor: pointer;
+}
+
+.margin-left-4{margin-left: 4px;}
+
+
+</style>
+  
+<div class="container">
+
+
+<!-- CLONE DATA -->
+
+<span id="assignee-val" class="view-issue-field editable-field inactive hidden" title="Click to edit">
+		<span class="user-hover" id="issue_summary_assignee_monicaa.gole" >
+		  <span class="aui-avatar aui-avatar-small"><span class="aui-avatar-inner"></span></span>Monica Gole
+		</span>
+		<span class="overlay-icon aui-icon aui-icon-small aui-iconfont-edit">
+			<i class="fa fa-pencil-square-o edit-text-btn" aria-hidden="true" style=" margin-top: 5px; margin-left: 5px;"></i>
+		</span>
+</span>
+
+<form id="assignee-form" class="ajs-dirty-warning-exempt aui hidden" action="#">
+	<div class="inline-edit-fields " tabindex="1">
+	  <div class="field-group" id="assignee-container">
+		<div class="aui-ss ajax-ss long-field aui-ss-has-entity-icon" id="assignee-single-select">
+		  <input autocomplete="off" id="assignee-field" type="text" class="text aui-ss-field ajs-dirty-warning-exempt"  value = 'Monica Gole' />
+		  <span class="icon1 aui-ss-icon noloading drop-menu">
+			<div class="fa fa-caret-down margin-left-4 aui-ss-entity-icon"></div>
+		  </span>
+		 <i class="fa fa-sitemap aui-ss-entity-icon" aria-hidden="true"></i>
+		</div>
+	  </div>
+	</div>
+	<div class="save-options" tabindex="1">
+	  <button type="submit" class="aui-button submit" accesskey="s" title="Press Alt+s to submit this form">
+		<i class="fa fa-check check-text-btn" aria-hidden="true"></i>
+	  </button>
+	  <button type="cancel" class="aui-button cancel" accesskey="`" title="Press Alt+` to cancel">
+		<i class="fa fa-times times-text-btn" aria-hidden="true"></i>
+		<span class="hidden"> Monica Gole</span>
+	  </button>
+	</div>
+ </form>
+
+<!-- CLONE DATA END -->
+
+  <div class="row" style="margin-top: 7%;">
+   
+   <div class = "col-sm-4">
+	
+	<span class="view-issue-field editable-field inactive" title="Click to edit">
+		<span class="user-hover" id="issue_summary_assignee_monicaa.gole" >
+		  <span class="aui-avatar aui-avatar-small"><span class="aui-avatar-inner"></span></span>Monica Gole
+		</span>
+		<span class="overlay-icon aui-icon aui-icon-small aui-iconfont-edit">
+			<i class="fa fa-pencil-square-o edit-text-btn" aria-hidden="true" style=" margin-top: 5px; margin-left: 5px;"></i>
+		</span>
+	</span>
+   
+   </div>
+   
+    <div class="col-sm-4">
+		   <span class="view-issue-field editable-field active">
+			 
+			 <form class="ajs-dirty-warning-exempt aui" action="#">
+				<div class="inline-edit-fields " tabindex="1">
+				  <div class="field-group" id="assignee-container">
+					<div class="aui-ss ajax-ss long-field aui-ss-has-entity-icon" id="assignee-single-select">
+					  <input autocomplete="off" id="assignee-field" type="text" class="text aui-ss-field ajs-dirty-warning-exempt"  value = 'Monica Gole' />
+					  <span class="icon1 aui-ss-icon noloading drop-menu">
+						<!--<i class="fa fa-caret-down " aria-hidden="true" ></i>-->
+						<div class="fa fa-caret-down margin-left-4 aui-ss-entity-icon"></div>
+					  </span>
+					 <i class="fa fa-sitemap aui-ss-entity-icon" aria-hidden="true"></i>
+					</div>
+				  </div>
+				</div>
+				<div class="save-options" tabindex="1">
+				  <button type="submit" class="aui-button submit" accesskey="s" title="Press Alt+s to submit this form">
+					<i class="fa fa-check check-text-btn" aria-hidden="true"></i>
+				  </button>
+				  <button type="cancel" class="aui-button cancel" accesskey="`" title="Press Alt+` to cancel">
+					<i class="fa fa-times times-text-btn" aria-hidden="true"></i>
+					<span class="hidden"> Monica Gole</span>
+				  </button>
+				</div>
+			  </form>
+			 </span>
+			 
+		</div>
+		
+		 <div class="col-sm-4">
+		 <div class="spinner-animation-demo spinner-animation-demo-absolute spinner-animation-demo-add"></div>
+		</div>
+		
+		</div>
+<script>
+   
+   
+ $(function() {
+    loadJqueryFunction();
+});
+   
+   function loadJqueryFunction(){
+   
+		// click submit 
+		  $(".check-text-btn").click(function(){
+		
+			$(this).closest("form").find('span.noloading.drop-menu').find('div')
+				    .addClass('spinner-animation-demo spinner-animation-demo-absolute spinner-animation-demo-add')
+					.removeClass('fa fa-caret-down margin-left-4');
+			
+			/*
+			setTimeout( function() { $(this).closest("form").find('span.noloading.drop-menu').find('div')
+					.removeClass('spinner-animation-demo spinner-animation-demo-absolute spinner-animation-demo-add')
+					.addClass('fa fa-caret-down margin-left-4'); }, 3000);
+					*/
+			
+			/*
+			$.ajax({
+				type: "POST",
+				url: 'Service1.svc/SaveYears',
+				data: JSON.stringify(YearData),
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				processData: true,
+				beforeSend: function() {
+				  $(this).closest("form").find('span.noloading.drop-menu').find('div')
+				    .addClass('spinner-animation-demo spinner-animation-demo-absolute spinner-animation-demo-add')
+					.removeClass('fa fa-caret-down margin-left-4');
+				},
+				success: function (data, status, jqXHR) {
+					$(this).closest("form").find('span.noloading.drop-menu').find('div')
+					.removeClass('spinner-animation-demo spinner-animation-demo-absolute spinner-animation-demo-add')
+					.addClass('fa fa-caret-down margin-left-4');
+				},
+				error: function (xhr) {
+					$(this).closest("form").find('span.noloading.drop-menu').find('div')
+					.removeClass('spinner-animation-demo spinner-animation-demo-absolute spinner-animation-demo-add')
+					.addClass('fa fa-caret-down margin-left-4');
+				}
+			}); */
+			
+			loadJqueryFunction();
+			
+		});
+   
+   
+        // CANCEL BTN
+        $(".times-text-btn").click(function(){
+			//alert('Welcome..!');
+			//$(this).hide();
+			
+			 //debugger;
+			 var frm = $('#assignee-val').clone();
+			 $(frm).attr("id",($(frm).attr("id")+Math.floor((Math.random() * 100) + 1))).removeClass('hidden');
+			 $(frm).children('span.user-hover').text($(this).siblings('span,.hidden').text().trim());
+			 
+			 //var cnt = $(".remove-just-this").contents();
+			 //var cnt = $(frm).contents();
+			 $(this).parents('.view-issue-field.editable-field.active').addClass('inactive').html($(frm).contents()).removeClass('active');
+			loadJqueryFunction();
+		});
+					   
+		// EDIT BTN	   
+		$(".edit-text-btn").click(function(){
+			//$(this).hide();
+			//debugger;
+			var frm = $('#assignee-form').clone();
+			var txt = $(this).closest('.view-issue-field.editable-field.inactive').children('span.user-hover').text().trim();
+			$(frm).closest("form").attr("id",($(frm).closest("form").attr("id")+Math.floor((Math.random() * 100) + 1))).removeClass('hidden');
+			
+			$(frm).closest("form").find('input[type=text],.aui-ss-field').val(txt);
+			$(frm).children('div.save-options').children('button.aui-button.cancel').children('span.hidden').text(txt);
+			//$(this).html(frm);
+			$(this).parents('.view-issue-field.editable-field.inactive').addClass('active').html(frm).removeClass('inactive');
+			loadJqueryFunction();
+		});
+   }
+   
+  // $(this).closest("form").find('input[type=text],.aui-ss-field').each(function() {console.log($(this).val())})
+</script>
+	
+  
+  <script>
+function addSpinner(el, static_pos){
+  var spinner = el.children('.spinner-animation-demo');
+  if (spinner.length && !spinner.hasClass('spinner-animation-demo-remove')) return null;
+  !spinner.length && (spinner = $('<div class="spinner-animation-demo' + (static_pos ? '' : ' spinner-animation-demo-absolute') + '"/>').appendTo(el));
+  animateSpinner(spinner, 'add');
+}
+
+function removeSpinner(el, complete){
+  var spinner = el.children('.spinner-animation-demo');
+  spinner.length && animateSpinner(spinner, 'remove', complete);
+}
+
+function animateSpinner(el, animation, complete){
+  if (el.data('animating')) {
+    el.removeClass(el.data('animating')).data('animating', null);
+    el.data('animationTimeout') && clearTimeout(el.data('animationTimeout'));
+  }
+  el.addClass('spinner-animation-demo-' + animation).data('animating', 'spinner-animation-demo-' + animation);
+  el.data('animationTimeout', setTimeout(function() { animation == 'remove' && el.remove(); complete && complete(); }, parseFloat(el.css('animation-duration')) * 1000));
+}
+</script>	
+	
+  <style>
+@keyframes spinner-animation-demo {
+  to {transform: rotate(360deg);}
+}
+
+.spinner-animation-demo,
+.spinner-animation-demo:before {
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+}
+
+.spinner-animation-demo:before {
+  content: '';
+  display: block;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #000;
+  animation: spinner-animation-demo .6s linear infinite;
+}
+
+.spinner-animation-demo-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+
+.spinner-animation-demo-add,
+.spinner-animation-demo-remove {
+  animation-fill-mode: both;
+  animation-duration: .4s;
+}
+
+.spinner-animation-demo-add {
+  animation-name: spinner-animation-demo-add;
+}
+
+@keyframes spinner-animation-demo-add {
+  from {transform: scale(0);}
+  to {transform: scale(1);}
+}
+
+.spinner-animation-demo-remove {
+  animation-name: spinner-animation-demo-remove;
+}
+
+@keyframes spinner-animation-demo-remove {
+  to {transform: scale(0);}
+}
+</style>
+  
+  
+</div>
+
+</body>
+</html>
 
